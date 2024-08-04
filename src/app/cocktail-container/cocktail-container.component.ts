@@ -28,7 +28,7 @@ export class CocktailContainerComponent {
     },
     {
       name: 'Gimlet',
-      img: './assets/images/margarita.webp',
+      img: './assets/images/Gimlet.webp',
       description:
         'Le Gimlet est un cocktail simple qui combine le gin et le citron vert pour créer une boisson ultra-rafraîchissante qui a résisté à l’épreuve du temps et est devenu l’un des cocktails les plus populaires. Avec sa saveur acérée, le Gimlet a une saveur incomparable, et est idéal pour être siroté pendant les chaudes soirées d’été.',
     },
