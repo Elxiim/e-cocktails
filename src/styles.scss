@@ -172,6 +172,10 @@ body {
   font-size: 12px;
 }
 
+.active {
+  background-color: var(--secondary);
+}
+
 // ********************* BUTTON
 .btn {
   padding: 10px 15px;
