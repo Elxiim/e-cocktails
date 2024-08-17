@@ -131,6 +131,17 @@ body {
 }
 
 // ********************* THEME
+
+.list-primary-action {
+  li {
+    &:hover {
+      background-color: var(--primary);
+      color: var(--white);
+      cursor: pointer;
+    }
+  }
+}
+
 .list-primary {
   li {
     padding: 10px 15px;
@@ -148,14 +159,17 @@ body {
       border-bottom-right-radius: 3px;
     }
 
-    &:hover {
-      background-color: var(--primary);
-      color: var(--white);
-      cursor: pointer;
-    }
-
     transition: all 0.4s;
   }
+}
+
+.badge {
+  background-color: var(--secondary);
+  border-radius: 3px;
+  padding: 2px 5px;
+  color: var(--white);
+  font-weight: 500;
+  font-size: 12px;
 }
 
 // ********************* BUTTON
