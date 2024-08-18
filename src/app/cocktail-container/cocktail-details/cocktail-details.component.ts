@@ -20,8 +20,7 @@ export class CocktailDetailsComponent {
 
   ngOnInit() {
     this.activatedRouted.paramMap.subscribe((paramMap: ParamMap) => {
-      const index: any = paramMap.get('index');
-      this.cocktail = this.cocktailService.getCocktail(+index);
+      this.cocktail = this.cocktailService.getCocktail(+paramMap.get('index')!);
     });
   }
 
