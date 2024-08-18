@@ -13,8 +13,6 @@ export class CocktailContainerComponent {
 
   subscription: Subscription = new Subscription();
 
-  selectedCocktail!: Cocktail;
-
   constructor(private cocktailService: CocktailService) {}
 
   ngOnInit() {
@@ -23,21 +21,9 @@ export class CocktailContainerComponent {
         this.cocktails = cocktail;
       })
     );
-
-    this.subscription.add(
-      this.cocktailService.selectedCocktail$.subscribe(
-        (selectedCocktail: Cocktail) => {
-          this.selectedCocktail = selectedCocktail;
-        }
-      )
-    );
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-  }
-
-  getCocktail(index: number) {
-    this.cocktailService.getCocktail(index);
   }
 }

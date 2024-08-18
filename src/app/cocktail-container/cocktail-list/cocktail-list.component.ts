@@ -9,15 +9,7 @@ import { Cocktail } from '../../shared/interfaces/cocktail';
 export class CocktailListComponent {
   @Input() cocktails?: Cocktail[];
 
-  @Input() selectedCocktail!: Cocktail;
-
-  @Output() singleItem: EventEmitter<number> = new EventEmitter();
-
   constructor() {}
 
   ngOnInit() {}
-
-  getSingleCocktail(index: number) {
-    this.singleItem.emit(index);
-  }
 }
