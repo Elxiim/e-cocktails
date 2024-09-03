@@ -7,7 +7,9 @@ import { Cocktail } from '../../shared/interfaces/cocktail';
   styleUrls: ['./cocktail-list.component.scss'],
 })
 export class CocktailListComponent {
-  @Input() cocktails?: Cocktail[];
+  @Input() cocktails!: Cocktail[];
+
+  search = '';
 
   constructor() {}
 
