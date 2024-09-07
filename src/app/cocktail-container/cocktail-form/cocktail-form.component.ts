@@ -29,7 +29,11 @@ export class CocktailFormComponent {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const index = paramMap.get('index')!;
       if (index !== null) {
-        this.singleCocktail = this.cocktailService.getCocktail(+index);
+        this.cocktailService
+          .getCocktail(+index)
+          .subscribe((cocktail: Cocktail) => {
+            this.singleCocktail = cocktail;
+          });
       }
 
       this.initForm(this.singleCocktail);
