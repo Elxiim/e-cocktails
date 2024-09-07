@@ -5,7 +5,7 @@
   [(ngModel)]="search"
   placeholder="Rechercher un cocktail"
 />
-<ul class="mb-20 list-primary d-flex flex-column">
+<ul *ngIf="cocktails" class="mb-20 list-primary d-flex flex-column">
   <li
     [routerLink]="[i]"
     routerLinkActive="active"

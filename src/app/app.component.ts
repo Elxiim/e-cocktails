@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Cocktail } from './shared/interfaces/cocktail';
+import { HttpClient } from '@angular/common/http';
+import { CocktailService } from './shared/services/cocktail.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +10,10 @@ import { Cocktail } from './shared/interfaces/cocktail';
 })
 export class AppComponent {
   title = 'e-cocktails';
+
+  constructor(private cocktailService: CocktailService) {}
+
+  ngOnInit() {
+    this.cocktailService.fetchCocktails().subscribe();
+  }
 }
