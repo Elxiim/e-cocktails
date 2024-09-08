@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { Cocktail } from '../../shared/interfaces/cocktail';
+
 import { PanierService } from 'src/app/shared/services/panier.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { CocktailService } from 'src/app/shared/services/cocktail.service';
 import { Subscription } from 'rxjs';
+import { Cocktail } from 'src/app/shared/interfaces/cocktail';
 
 @Component({
   selector: 'app-cocktail-details',
