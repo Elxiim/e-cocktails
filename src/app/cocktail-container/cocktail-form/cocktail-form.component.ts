@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { first } from 'rxjs';
 import { Cocktail } from 'src/app/shared/interfaces/cocktail';
 import { CocktailService } from 'src/app/shared/services/cocktail.service';
 
@@ -12,7 +13,7 @@ import { CocktailService } from 'src/app/shared/services/cocktail.service';
 export class CocktailFormComponent {
   public cocktailForm!: FormGroup;
 
-  public singleCocktail!: Cocktail;
+  public singleCocktail!: Cocktail | any;
 
   get ingredients() {
     return this.cocktailForm.get('ingredients') as any;
@@ -31,12 +32,14 @@ export class CocktailFormComponent {
       if (index !== null) {
         this.cocktailService
           .getCocktail(+index)
+          .pipe(first())
           .subscribe((cocktail: Cocktail) => {
             this.singleCocktail = cocktail;
+            this.initForm(this.singleCocktail);
           });
+      } else {
+        this.initForm();
       }
-
-      this.initForm(this.singleCocktail);
     });
   }
 
@@ -71,12 +74,13 @@ export class CocktailFormComponent {
   public submit() {
     // Edit cocktail
     if (this.singleCocktail) {
-      this.cocktailService.editCocktail(this.cocktailForm.value);
+      this.cocktailService
+        .editCocktail(this.singleCocktail._id, this.cocktailForm.value)
+        .subscribe();
+    } else {
+      this.cocktailService.addCocktail(this.cocktailForm.value).subscribe();
     }
 
-    this.cocktailService.addCocktail(this.cocktailForm.value);
     this.router.navigate(['..'], { relativeTo: this.activatedRoute });
   }
 }
-
-//https://drinkch.rokka.io/new-composition-600/9c47aa.jpg

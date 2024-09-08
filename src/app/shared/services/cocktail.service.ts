@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, filter, first, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable, tap } from 'rxjs';
 import { Cocktail } from '../interfaces/cocktail';
 import { HttpClient } from '@angular/common/http';
 
@@ -18,7 +18,6 @@ export class CocktailService {
   getCocktail(index: number): Observable<Cocktail> {
     return this.cocktails$.pipe(
       filter((cocktails: Cocktail[]) => cocktails !== null),
-      first(),
       map((cocktail: Cocktail[]) => {
         return cocktail[index];
       })
@@ -30,22 +29,40 @@ export class CocktailService {
    * @param newCocktail
    */
 
-  public addCocktail(newCocktail: Cocktail) {
-    const cocktailActuels = this.cocktails$.value;
-    this.cocktails$.next([...cocktailActuels, newCocktail]);
+  public addCocktail(newCocktail: Cocktail): Observable<Cocktail> {
+    return this.http
+      .post<Cocktail>('https://restapi.fr/api/cocktails', newCocktail)
+      .pipe(
+        tap((cocktail: Cocktail) => {
+          const value = this.cocktails$.value;
+          this.cocktails$.next([...value, cocktail]);
+        })
+      );
   }
 
-  public editCocktail(editedCocktail: Cocktail) {
-    const value = this.cocktails$.value;
-    this.cocktails$.next(
-      value.map((cocktail: Cocktail) => {
-        if (cocktail.name === editedCocktail.name) {
-          return editedCocktail;
-        } else {
-          return cocktail;
-        }
-      })
-    );
+  public editCocktail(
+    cocktailId: string,
+    editedCocktail: Cocktail
+  ): Observable<Cocktail> {
+    return this.http
+      .patch<Cocktail>(
+        `https://restapi.fr/api/cocktails/${cocktailId}`,
+        editedCocktail
+      )
+      .pipe(
+        tap((savedCocktail: Cocktail) => {
+          const value = this.cocktails$.value;
+          this.cocktails$.next(
+            value.map((cocktail: Cocktail) => {
+              if (cocktail.name == savedCocktail.name) {
+                return savedCocktail;
+              } else {
+                return cocktail;
+              }
+            })
+          );
+        })
+      );
   }
 
   public fetchCocktails(): Observable<Cocktail[]> {
