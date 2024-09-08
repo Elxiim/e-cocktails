@@ -3,7 +3,7 @@ import { PanierContainerComponent } from './panier-container/panier-container.co
 
 export const PANIER_ROUTES: Routes = [
   {
-    path: 'panier',
+    path: '',
     component: PanierContainerComponent,
   },
 ];
