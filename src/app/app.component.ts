@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Cocktail } from './shared/interfaces/cocktail';
 import { HttpClient } from '@angular/common/http';
 import { CocktailService } from './shared/services/cocktail.service';
+import { environment } from './environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -15,5 +16,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.cocktailService.fetchCocktails().subscribe();
+
+    console.log(environment);
   }
 }
