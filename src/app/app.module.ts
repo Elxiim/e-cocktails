@@ -10,18 +10,10 @@ import { HeaderComponent } from './header/header.component';
 
 // routes
 import { APP_ROUTES } from './app.routes';
-import { CocktailModule } from './features/cocktail/cocktail.module';
-import { PanierModule } from './features/panier/panier.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    RouterModule.forRoot(APP_ROUTES),
-    CocktailModule,
-    PanierModule,
-  ],
+  imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(APP_ROUTES)],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -5,7 +5,7 @@ import { CocktailFormComponent } from './cocktail-container/cocktail-form/cockta
 
 export const COCKTAIL_ROUTES: Routes = [
   {
-    path: 'cocktails',
+    path: '',
     component: CocktailContainerComponent,
     children: [
       {

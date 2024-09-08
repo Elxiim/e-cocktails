@@ -6,4 +6,16 @@ export const APP_ROUTES: Routes = [
     redirectTo: 'cocktails',
     pathMatch: 'full',
   },
+  {
+    path: 'cocktails',
+    loadChildren: () =>
+      import('./features/cocktail/cocktail.module').then(
+        (m) => m.CocktailModule
+      ),
+  },
+  {
+    path: 'panier',
+    loadChildren: () =>
+      import('./features/panier/panier.module').then((m) => m.PanierModule),
+  },
 ];
